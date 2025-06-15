@@ -1,21 +1,24 @@
-// File: src/App.jsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
 import Scanner from './pages/Scanner';
 import ProductDetails from './pages/ProductDetails';
+import NotFound from './pages/NotFound';
+import AdminDashboard from './pages/AdminDashboard';
+import Layout from './components/Layout';
 
-function App() {
+export default function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100 p-4">
+      <Layout>
         <Routes>
-          <Route path="/" element={<div className="text-gray-700 text-xl font-semibold">Welcome to Scan & Verify</div>} />
+          <Route path="/" element={<Home />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/product/:code" element={<ProductDetails />} />
-          {/* Add more routes here like ProductDetails, NotFound, etc. */}
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
-      </div>
+      </Layout>
     </Router>
   );
 }
 
-export default App;
