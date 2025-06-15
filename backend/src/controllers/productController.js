@@ -48,3 +48,8 @@ export const createProduct = asyncHandler(async (req, res) => {
 
   res.status(201).json(product);
 });
+
+export const getAllProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find(); // fetch all products from DB
+  res.status(200).json(products);
+});
