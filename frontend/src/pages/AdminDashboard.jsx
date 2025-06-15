@@ -15,7 +15,7 @@ export default function AdminDashboard() {
   }, []);
 
   const handleDelete = async (id) => {
-    await fetch(`/api/products/${id}`, { method: 'DELETE' });
+    await fetch(`http://localhost:5000/api/products/${id}`, { method: 'DELETE' });
     setProducts(prev => prev.filter(p => p._id !== id));
   };
 
