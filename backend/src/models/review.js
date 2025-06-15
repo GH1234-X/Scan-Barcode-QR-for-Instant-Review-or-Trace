@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const reviewSchema = new mongoose.Schema({
   product: {
@@ -8,8 +8,8 @@ const reviewSchema = new mongoose.Schema({
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User', // If you have user authentication
-    required: true
+    ref: 'User', // You can make this optional if no auth
+    required: false
   },
   rating: {
     type: Number,
@@ -31,4 +31,5 @@ const reviewSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Review', reviewSchema);
+const Review = mongoose.model('Review', reviewSchema);
+export default Review;

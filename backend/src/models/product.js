@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const productSchema = new mongoose.Schema({
   barcode: {
@@ -15,7 +15,7 @@ const productSchema = new mongoose.Schema({
   origin: {
     country: String,
     region: String,
-    coordinates: String // Could be geolocation data
+    coordinates: String
   },
   ingredients: [String],
   sustainabilityData: {
@@ -33,4 +33,5 @@ const productSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Product', productSchema);
+const Product = mongoose.model('Product', productSchema);
+export default Product;
