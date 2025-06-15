@@ -2,46 +2,42 @@ import express, { urlencoded } from 'express';
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import dotenv from 'dotenv';
-import { connect } from 'mongoose';
 import connectDB from './src/config/db.js';
 import { errorHandler } from './src/middleware/errorMiddleware.js';
 
-// import products from './src/routes/productRoutes.js';
-// import reviews from './src/routes/reviewRoutes.js'
+import productRoutes from './src/routes/productRoutes.js';
+import reviewRoutes from './src/routes/reviewRoutes.js';
 
-dotenv.config({});
+dotenv.config();
 connectDB();
-const app = express();
 
+const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(express.json());
+app.use(urlencoded({ extended: true }));
+app.use(cookieParser());
 
-
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    credentials: true,
+};
+app.use(cors(corsOptions));
 
 app.get("/", (req, res) => {
-    return res.status(200).json({
+    res.status(200).json({
         message: "Welcome to the backend server!",
         status: "success"
     });
-
 });
 
-//middleware
-app.use(express.json());
-app.use(cookieParser());
+// ✅ Mount routes
+app.use('/api/products', productRoutes);     // /api/products/:code or POST /
+app.use('/api/products', reviewRoutes);      // /api/products/:productId/reviews
 
-// app.use('/api/products', products);
-// app.use('/api', reviews);
-app.use(urlencoded({ extended: true }));
-const corsOptions = {
-    origin: 'http://localhost:5173', // Adjust this to your frontend URL
-    credentials: true, // Allow cookies to be sent
-};
-app.use(cors(corsOptions));
+// ✅ Error handler last
 app.use(errorHandler);
 
-
-app.listen(port, () => { 
-    
+app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });
