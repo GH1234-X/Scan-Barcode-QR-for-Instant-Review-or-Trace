@@ -1,15 +1,11 @@
 import express from 'express';
-//import { protect } from '../middleware/authMiddleware.js'; // If you implement auth
-/*import {
- getProductReviews,
-  createReview
-} from '../controllers/reviewController.js';
- */
+// import { protect } from '../middleware/authMiddleware.js';
+import { getProductReviews, createReview } from '../controllers/reviewController.js';
 
-//onst router = express.Router();
+const router = express.Router();
 
-/*router.route('/:productId/reviews')
-  .get(getProductReviews)
-  .post(protect, createReview); // Protected route
+router.get('/:productId/reviews', getProductReviews);
+// router.post('/:productId/reviews', protect, createReview); // Uncomment after auth is ready
+router.post('/:productId/reviews', createReview); // For now, no auth
 
-export default router;*/
+export default router;
