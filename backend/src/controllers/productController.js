@@ -1,11 +1,8 @@
-const Product = require('../models/product.js');
-const asyncHandler = require('express-async-handler');
+import Product from '../models/product.js';
+import asyncHandler from 'express-async-handler';
 
-// @desc    Get product by barcode/QR code
-// @route   GET /api/products/:code
-// @access  Public
-const getProductByCode = asyncHandler(async (req, res) => {
-  const product = await Product.findOne({ 
+export const getProductByCode = asyncHandler(async (req, res) => {
+  const product = await Product.findOne({
     $or: [
       { barcode: req.params.code },
       { qrCode: req.params.code }
@@ -20,10 +17,7 @@ const getProductByCode = asyncHandler(async (req, res) => {
   res.json(product);
 });
 
-// @desc    Create a new product
-// @route   POST /api/products
-// @access  Private/Admin
-const createProduct = asyncHandler(async (req, res) => {
+export const createProduct = asyncHandler(async (req, res) => {
   const {
     barcode,
     name,
@@ -54,8 +48,3 @@ const createProduct = asyncHandler(async (req, res) => {
 
   res.status(201).json(product);
 });
-
-module.exports = {
-  getProductByCode,
-  createProduct
-};

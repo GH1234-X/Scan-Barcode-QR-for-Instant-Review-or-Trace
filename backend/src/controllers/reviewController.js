@@ -1,23 +1,17 @@
-const Review = require('../models/review.js');
-const Product = require('../models/product.js');
-const asyncHandler = require('express-async-handler');
+import Review from '../models/review.js';
+import Product from '../models/product.js';
+import asyncHandler from 'express-async-handler';
 
-// @desc    Get reviews for a product
-// @route   GET /api/products/:productId/reviews
-// @access  Public
-const getProductReviews = asyncHandler(async (req, res) => {
-  const reviews = await Review.find({ 
+export const getProductReviews = asyncHandler(async (req, res) => {
+  const reviews = await Review.find({
     product: req.params.productId,
-    status: 'approved' // Only show approved reviews
+    status: 'approved'
   }).populate('user', 'name');
 
   res.json(reviews);
 });
 
-// @desc    Create new review
-// @route   POST /api/products/:productId/reviews
-// @access  Private
-const createReview = asyncHandler(async (req, res) => {
+export const createReview = asyncHandler(async (req, res) => {
   const { rating, comment, images, isVerifiedPurchase } = req.body;
 
   const product = await Product.findById(req.params.productId);
@@ -29,18 +23,13 @@ const createReview = asyncHandler(async (req, res) => {
 
   const review = await Review.create({
     product: req.params.productId,
-    user: req.user._id, // Assuming you have auth middleware
+    user: req.user?._id || null, // If no auth, fallback to null
     rating,
     comment,
     images,
     isVerifiedPurchase,
-    status: 'pending' // Default to pending for moderation
+    status: 'pending'
   });
 
   res.status(201).json(review);
 });
-
-module.exports = {
-  getProductReviews,
-  createReview
-};
