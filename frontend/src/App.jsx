@@ -5,6 +5,7 @@ import ProductDetails from './pages/ProductDetails';
 import NotFound from './pages/NotFound';
 import AdminDashboard from './pages/AdminDashboard';
 import Layout from './components/Layout';
+// import NotFound from './pages/NotFound';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/product/:code" element={<ProductDetails />} />
           <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/not-found" element={<NotFound />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
