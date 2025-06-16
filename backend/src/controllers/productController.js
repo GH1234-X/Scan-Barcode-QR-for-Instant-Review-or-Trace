@@ -129,31 +129,6 @@ export const getProductByCode = asyncHandler(async (req, res) => {
     }
   }
 
-  // --- Fallback 3: EANData API ---
-  // if (!externalProduct) {
-  //   try {
-  //     const eanRes = await axios.get(`https://api.ean-data.com/products?key=YOUR_API_KEY&ean=${code}`);
-  //     const item = eanRes.data?.product;
-  //     if (item) {
-  //       externalProduct = {
-  //         name: item.name || 'Unknown',
-  //         brand: item.brand || 'Unknown',
-  //         origin: 'N/A',
-  //         description: item.description || 'No description',
-  //         barcode: code,
-  //         ingredients: 'N/A',
-  //         sustainabilityData: 'Not Available',
-  //         manufacturingDate: 'N/A',
-  //         expiryDate: 'N/A',
-  //         qrCode: null,
-  //         images: [item.image || ''],
-  //         source: 'EANData'
-  //       };
-  //     }
-  //   } catch (err) {
-  //     console.error('EANData failed:', err.message);
-  //   }
-  // }
   // --- Fallback 3: Barcode Lookup API (RapidAPI) ---
 if (!externalProduct) {
   try {
