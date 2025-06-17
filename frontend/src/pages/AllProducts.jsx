@@ -54,14 +54,14 @@ export default function AllProducts() {
               className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all overflow-hidden"
             >
               {/* Product Image */}
-            {/* <img
+            <img
                     src={product.image}
                     alt={product.name}
                     onError={(e) => {
                     e.target.src = "https://m.media-amazon.com/images/I/51Br-KH59tL.jpg";
                 }}
-                className="w-full h-56 object-cover"
-            /> */}
+                className="w-60 h-56 object-cover"
+            />
 
 
               {/* Product Info */}
