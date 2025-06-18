@@ -27,6 +27,22 @@ const productSchema = new mongoose.Schema({
   expiryDate: Date,
   qrCode: String,
   image: { type: String },
+
+  reviews: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Review'
+  }],
+
+  // Optional: Store average rating (you can update it via middleware or controller)
+  averageRating: {
+    type: Number,
+    default: 0
+  },
+  numReviews: {
+  type: Number,
+  default: 0
+},
+
   createdAt: {
     type: Date,
     default: Date.now
