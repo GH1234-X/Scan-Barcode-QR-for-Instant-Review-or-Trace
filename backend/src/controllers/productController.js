@@ -244,7 +244,7 @@ export const deleteProduct = asyncHandler(async (req, res) => {
     throw new Error('Product not found');
   }
 
-  await product.remove();
+  await product.deleteOne();
 
   res.json({ message: 'Product deleted successfully' });
 });
