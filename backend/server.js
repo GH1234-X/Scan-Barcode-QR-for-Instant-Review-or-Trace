@@ -16,10 +16,7 @@ connectDB();
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(express.json());
-app.use(urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use('/api/auth', authRoutes);
+
 
 const corsOptions = {
     origin: 'http://localhost:5173',
@@ -33,6 +30,11 @@ app.get("/", (req, res) => {
         status: "success"
     });
 });
+
+app.use(express.json());
+app.use(urlencoded({ extended: true }));
+app.use(cookieParser());
+app.use('/api/auth', authRoutes);
 
 // ✅ Mount routes
 app.use('/api/products', productRoutes);     // /api/products/:code or POST /
