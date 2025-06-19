@@ -8,6 +8,7 @@ import Layout from './components/Layout';
 // import NotFound from './pages/NotFound';
 import AllProducts from "./pages/AllProducts";
 import Login from './pages/Login';
+import Register from "./pages/Register";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -26,6 +27,7 @@ export default function App() {
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/all-products" element={<AllProducts />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
