@@ -30,6 +30,8 @@ export default function ProductDetails() {
 
   if (loading) return <div className="p-4 text-center text-gray-600">Loading product info...</div>;
 
+
+  
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <div className="bg-white shadow-md rounded-lg overflow-hidden flex flex-col md:flex-row items-center md:items-start gap-6">
