@@ -23,7 +23,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/product/:code" element={<ProductDetails />} />
-          <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+          {/* <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} /> */}
+          <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/all-products" element={<AllProducts />} />
           <Route path="/login" element={<Login />} />
