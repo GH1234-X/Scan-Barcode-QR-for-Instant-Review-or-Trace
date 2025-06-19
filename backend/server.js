@@ -7,6 +7,8 @@ import { errorHandler } from './src/middleware/errorMiddleware.js';
 import axios from 'axios'; 
 import productRoutes from './src/routes/productRoutes.js';
 import reviewRoutes from './src/routes/reviewRoutes.js';
+import authRoutes from "./src/routes/authRoutes.js";
+
 
 dotenv.config();
 connectDB();
@@ -17,6 +19,7 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use('/api/auth', authRoutes);
 
 const corsOptions = {
     origin: 'http://localhost:5173',

@@ -7,6 +7,12 @@ import AdminDashboard from './pages/AdminDashboard';
 import Layout from './components/Layout';
 // import NotFound from './pages/NotFound';
 import AllProducts from "./pages/AllProducts";
+import Login from './pages/Login';
+
+const ProtectedRoute = ({ children }) => {
+  const token = localStorage.getItem("token");
+  return token ? children : <Login />;
+};
 
 export default function App() {
   return (
@@ -16,9 +22,10 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/scanner" element={<Scanner />} />
           <Route path="/product/:code" element={<ProductDetails />} />
-          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
           <Route path="/not-found" element={<NotFound />} />
           <Route path="/all-products" element={<AllProducts />} />
+          <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
