@@ -385,10 +385,13 @@
 // }
 
 
-
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from 'react';
 
 export default function AdminDashboard() {
+  // const { auth, logout } = useAuth();
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
@@ -399,6 +402,9 @@ export default function AdminDashboard() {
     sustainability: '',
     image: '',
   });
+  // useEffect(() => {
+  //   if (!auth) navigate("/login");
+  // }, [auth]);
 
   useEffect(() => {
     fetch('http://localhost:5000/api/products')
@@ -409,6 +415,7 @@ export default function AdminDashboard() {
       })
       .catch(() => setLoading(false));
   }, []);
+  
 
   const handleDelete = async (id) => {
     await fetch(`http://localhost:5000/api/products/${id}`, {
@@ -452,7 +459,14 @@ export default function AdminDashboard() {
   };
 
   return (
+    
     <div className="p-6">
+    {/* //   <div className="p-4">
+    //   <h2 className="text-2xl font-bold mb-4">Welcome, {auth?.username}</h2>
+    //   <button onClick={logout} className="bg-red-600 text-white px-4 py-2">
+    //     Logout
+    //   </button>
+    // </div> */}
       <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
 
       {/* Add/Edit Button */}
