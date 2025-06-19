@@ -1,12 +1,13 @@
-// src/main.jsx
+// main.jsx or index.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './index.css'; // includes Tailwind
-import './App.css';
+import { AuthProvider } from './context/AuthContext'; // ✅ import
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <AuthProvider> {/* ✅ wrap your app */}
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );
