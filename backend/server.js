@@ -90,9 +90,19 @@ connectDB();
 
 const app = express();
 
-// ✅ CORS Setup - only allow your frontend
+const allowedOrigins = [
+  "https://scan-barcode-qr-for-instant-review.vercel.app",
+  "https://scan-barcode-qr-for-insta-git-5f1768-chatbots-projects-19e7be15.vercel.app"
+];
+
 const corsOptions = {
-  origin: "https://scan-barcode-qr-for-instant-review.vercel.app", // your frontend Vercel domain
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   credentials: true,
 };
 app.use(cors(corsOptions));
