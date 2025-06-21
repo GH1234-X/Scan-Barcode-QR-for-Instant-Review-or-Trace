@@ -18,7 +18,7 @@ export default function AdminDashboard() {
   });
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products`)
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -33,7 +33,7 @@ export default function AdminDashboard() {
       return;
     }
 
-    await fetch(`http://localhost:5000/api/products/${id}`, {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/products/${id}`, {
       method: "DELETE",
     });
     setProducts((prev) => prev.filter((p) => p._id !== id));
@@ -49,8 +49,8 @@ export default function AdminDashboard() {
 
     const method = newProduct._id ? "PUT" : "POST";
     const url = newProduct._id
-      ? `http://localhost:5000/api/products/${newProduct._id}`
-      : "http://localhost:5000/api/products";
+      ? `${import.meta.env.VITE_BACKEND_URL}/api/products/${newProduct._id}`
+      : `${import.meta.env.VITE_BACKEND_URL}/api/products`;
 
     const res = await fetch(url, {
       method,
