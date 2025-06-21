@@ -19,28 +19,6 @@ export default function AllProducts() {
   }, []);
 
   return (
-    // <div className="min-h-screen bg-gray-100 p-8">
-    //   <h1 className="text-3xl font-bold text-center mb-10 text-gray-800">🛒 All Products</h1>
-    //   {products.length === 0 ? (
-    //     <p className="text-center text-gray-600">Loading products...</p>
-    //   ) : (
-    //     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    //       {products.map((product) => (
-    //         <div key={product._id} className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-    //           <h2 className="text-xl font-semibold text-gray-800 mb-2">{product.name}</h2>
-    //           <p><strong>Brand:</strong> {product.brand}</p>
-    //           <p><strong>Origin:</strong> 
-    //             {product.origin?.country}, {product.origin?.region}
-    //           </p>
-    //           <p><strong>Rating:</strong> ⭐ {product.rating || "N/A"}</p>
-    //           <p><strong>Barcode:</strong> {product.barcode}</p>
-    //           <p><strong>Authenticity:</strong> ✅ Verified</p>
-    //           <p className="text-sm text-gray-500 mt-2">Added on: {new Date(product.createdAt).toLocaleDateString()}</p>
-    //         </div>
-    //       ))}
-    //     </div>
-    //   )}
-    // </div>
     <div className="min-h-screen bg-gray-100 py-10 px-6 md:px-16">
       <h1 className="text-4xl font-bold text-center mb-12 text-blue-700">🛒 All Product Listings</h1>
 
