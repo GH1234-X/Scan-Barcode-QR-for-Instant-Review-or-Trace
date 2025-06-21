@@ -49,11 +49,6 @@ If not → call external API → save product to DB → return data
 
 Admin panel auto-displays new product entries
 
-yaml
-Always show details
-
-Copy
-
 ---
 
 
